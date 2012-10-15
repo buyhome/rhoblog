@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"RHOMOBI-QUITO-1140-stderr-1349325801269.txt","computername":"RHOMOBI-QUITO","pid":1140,"type":"stderr","created":1349325801269},{"file":"RHOMOBI-QUITO-1220-stderr-1349325798910.txt","computername":"RHOMOBI-QUITO","pid":1220,"type":"stderr","created":1349325798910},{"file":"RHOMOBI-QUITO-1764-stderr-1349325801004.txt","computername":"RHOMOBI-QUITO","pid":1764,"type":"stderr","created":1349325801004},{"file":"RHOMOBI-QUITO-2100-stderr-1349325803659.txt","computername":"RHOMOBI-QUITO","pid":2100,"type":"stderr","created":1349325803659},{"file":"RHOMOBI-QUITO-2308-stderr-1349325804051.txt","computername":"RHOMOBI-QUITO","pid":2308,"type":"stderr","created":1349325804051},{"file":"RHOMOBI-QUITO-2472-stderr-1349325801722.txt","computername":"RHOMOBI-QUITO","pid":2472,"type":"stderr","created":1349325801722},{"file":"RHOMOBI-QUITO-2640-stderr-1349325805191.txt","computername":"RHOMOBI-QUITO","pid":2640,"type":"stderr","created":1349325805191},{"file":"RHOMOBI-QUITO-2976-stderr-1349325802784.txt","computername":"RHOMOBI-QUITO","pid":2976,"type":"stderr","created":1349325802784},{"file":"RHOMOBI-QUITO-3092-stderr-1349325804800.txt","computername":"RHOMOBI-QUITO","pid":3092,"type":"stderr","created":1349325804800},{"file":"RHOMOBI-QUITO-3096-stderr-1349325845629.txt","computername":"RHOMOBI-QUITO","pid":3096,"type":"stderr","created":1349325845629},{"file":"RHOMOBI-QUITO-3208-stderr-1349325804503.txt","computername":"RHOMOBI-QUITO","pid":3208,"type":"stderr","created":1349325804503},{"file":"RHOMOBI-QUITO-3344-stderr-1349325802425.txt","computername":"RHOMOBI-QUITO","pid":3344,"type":"stderr","created":1349325802425},{"file":"RHOMOBI-QUITO-336-stderr-1349325845098.txt","computername":"RHOMOBI-QUITO","pid":336,"type":"stderr","created":1349325845098},{"file":"RHOMOBI-QUITO-3364-stderr-1349325803253.txt","computername":"RHOMOBI-QUITO","pid":3364,"type":"stderr","created":1349325803253},{"file":"RHOMOBI-QUITO-3376-stderr-1349327300979.txt","computername":"RHOMOBI-QUITO","pid":3376,"type":"stderr","created":1349327300979},{"file":"RHOMOBI-QUITO-3388-stderr-1349325799972.txt","computername":"RHOMOBI-QUITO","pid":3388,"type":"stderr","created":1349325799972},{"file":"RHOMOBI-QUITO-3468-stderr-1349325805519.txt","computername":"RHOMOBI-QUITO","pid":3468,"type":"stderr","created":1349325805519},{"file":"RHOMOBI-QUITO-3632-stderr-1349325800519.txt","computername":"RHOMOBI-QUITO","pid":3632,"type":"stderr","created":1349325800519},{"file":"RHOMOBI-QUITO-3656-stderr-1349325802034.txt","computername":"RHOMOBI-QUITO","pid":3656,"type":"stderr","created":1349325802034},{"file":"RHOMOBI-QUITO-3680-stderr-1349327301621.txt","computername":"RHOMOBI-QUITO","pid":3680,"type":"stderr","created":1349327301621},{"file":"RHOMOBI-QUITO-3752-stderr-1349325805956.txt","computername":"RHOMOBI-QUITO","pid":3752,"type":"stderr","created":1349325805956}];
+        var lastUpdated = 1349327301934;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>

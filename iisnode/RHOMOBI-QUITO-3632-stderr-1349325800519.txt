@@ -1,0 +1,12 @@
+Application has thrown an uncaught exception and is terminated:
+TypeError: Cannot read property 'Store' of undefined
+    at new <anonymous> (C:\Node.js\mblog\node_modules\connect-mongo\lib\connect-mongo.js:27:30)
+    at HTTPServer.<anonymous> (C:\Node.js\mblog\app.js:22:12)
+    at HTTPServer.configure (C:\Node.js\mblog\node_modules\express\lib\http.js:542:61)
+    at Object.<anonymous> (C:\Node.js\mblog\app.js:14:5)
+    at Module._compile (module.js:446:26)
+    at Object..js (module.js:464:10)
+    at Module.load (module.js:353:31)
+    at Function._load (module.js:311:12)
+    at Module.require (module.js:359:17)
+    at require (module.js:375:17)
